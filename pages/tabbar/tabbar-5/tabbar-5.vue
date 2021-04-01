@@ -3,23 +3,31 @@
 		<view class="info-col uni-row uni-flex">
 			<image class="flex-item logo-image mr10" src="../../../static/img/release.png" shape="circle"></image>
 			<view class="flex-item uni-flex-1">
-				<p>姓名 职位</p>
-				<p>手机号</p>
+				<p>{{ userInfo.nickName }}</p>
+				<!-- <p>手机号</p> -->
 			</view>
 		</view>
 		
-		<view class="archives-col"></view>
+		<view class="favorite-wrap" @click="handleFavorite">
+			<view class="favorite-wrap-second">
+				<image class="favorite-wrap-image" src="../../../static/huayu.jpg" mode="aspectFill"></image>
+				<view class="uni-list-item__content">
+					<text class="uni-list-item__content-title">我喜欢的音乐</text>
+					<text class="uni-list-item__content-note">223首</text>
+				</view>
+			</view>
+		</view>
 		<view class="archives-col work-col">
 			
 		</view>
 		
-		<uni-list class="width-100">
-			<uni-list-item thumb="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png"  title="歌手列表" link to="/pages/detail/addressList/index"></uni-list-item>
-			<uni-list-item thumb="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png"  title="地址管理" link to="/pages/detail/sign/sign" ></uni-list-item>
-			<uni-list-item thumb="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png"  title="缓存" link clickable  @click="onSessionClick" ></uni-list-item>
-			<uni-list-item thumb="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png"  title="技术支持" link ></uni-list-item>
-			<uni-list-item thumb="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png" title="相机" clickable  @click="onClick" link ></uni-list-item>
-			<uni-list-item thumb="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png" title="优惠券" link to="/pages/detail/coupon/coupon"></uni-list-item>
+		<uni-list :border="false" class="width-100">
+			<uni-list-item :border="false" thumb="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png"  title="歌手列表" link to="/pages/detail/addressList/index"></uni-list-item>
+			<uni-list-item :border="false" thumb="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png"  title="地址管理" link to="/pages/detail/sign/sign" ></uni-list-item>
+			<uni-list-item :border="false" thumb="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png"  title="缓存" link clickable  @click="onSessionClick" ></uni-list-item>
+			<uni-list-item :border="false" thumb="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png"  title="技术支持" link ></uni-list-item>
+			<uni-list-item :border="false" thumb="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png" title="相机" clickable  @click="onClick" link ></uni-list-item>
+			<uni-list-item :border="false" thumb="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png" title="优惠券" link to="/pages/detail/coupon/coupon"></uni-list-item>
 		</uni-list>
 		<uni-popup ref="popup" type="dialog">
 			<uni-popup-dialog type="warning" title="确定清空缓存？" :duration="2000" :before-close="true" @close="close" @confirm="confirm"></uni-popup-dialog>
@@ -38,13 +46,26 @@
 		data() {
 			return {
 				title: 'Hello',
-				dialogCon: null
+				dialogCon: null,
+				userInfo: {},
 			}
 		},
-		onLoad() {
-
+		async onLoad() {
+			
+			const data = await this.$fetch.get('/user/detail', {uid: '442573633'})
+			this.userInfo = Object.assign({}, data.profile)
+			console.log('data', data)
+			
+			// 获取用户歌单
+			const data2 = await this.$fetch.get('/user/playlist', {uid: 442573633})
+			console.log('data2===', data2)
 		},
 		methods: {
+			handleFavorite(){
+				uni.navigateTo({
+					url: '/pages/detail/favorite/favorite'
+				})
+			},
 			onSessionClick(){
 				console.log('123')
 				this.$refs.popup.open()
@@ -97,6 +118,24 @@
 	
 	.uni-flex{
 		display: flex;
+	}
+	
+	.favorite-wrap{
+		width: 96%;
+		// height: 200rpx;
+		border-radius: 6px;
+		background-color: rgba($color: #000000, $alpha: .1);
+		margin: 20rpx auto;
+		.favorite-wrap-second{
+			display: flex;
+			padding: 16px;
+			.favorite-wrap-image{
+				width: $uni-img-size-lg;
+				height: $uni-img-size-lg;
+				border-radius: $uni-border-radius-lg;
+				margin-right: $uni-spacing-row-base;
+			}
+		}
 	}
 	
 	.content{

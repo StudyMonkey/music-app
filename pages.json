@@ -1,6 +1,6 @@
 {
 	"pages": [{
-		"path": "pages/tabbar/tabbar-1/tabbar-1",
+		"path": "pages/index/index",
 		"style": {
 			"navigationBarTitleText": "首页"
 		}
@@ -75,6 +75,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/detail/favorite/favorite",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "最喜欢的音乐",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -92,7 +101,7 @@
 		"selectedColor": "#f33e54",
 		"list": [
 			{
-				"pagePath":"pages/tabbar/tabbar-1/tabbar-1",
+				"pagePath":"pages/index/index",
 				"iconPath":"static/img/tabbar/home.png",
 				"selectedIconPath":"static/img/tabbar/homeactive.png",
 				"text":"首页"

@@ -15,7 +15,6 @@
 					<view class="uni-list-item__header">
 						<view v-if="thumb" class="uni-list-item__icon"><image :src="thumb" class="uni-list-item__icon-img" :class="['uni-list--' + thumbSize]" /></view>
 						<view v-else-if="showExtraIcon" class="uni-list-item__icon"><uni-icons :color="extraIcon.color" :size="extraIcon.size" :type="extraIcon.type" /></view>
-						<view v-else-if="showIconFont" class="uni-list-item__icon"><text :class="['iconfont', icon]"></text></view>
 					</view>
 				</slot>
 				<slot name="body">
@@ -25,10 +24,11 @@
 					</view>
 				</slot>
 				<slot name="footer">
-					<view v-if="rightText || showBadge || showSwitch" class="uni-list-item__extra" :class="{ 'flex--justify': direction === 'column' }">
+					<view v-if="rightText || showBadge || showSwitch || showIconFont" class="uni-list-item__extra" :class="{ 'flex--justify': direction === 'column' }">
 						<text v-if="rightText" class="uni-list-item__extra-text">{{ rightText }}</text>
 						<uni-badge v-if="showBadge" :type="badgeType" :text="badgeText" />
 						<switch v-if="showSwitch" :disabled="disabled" :checked="switchChecked" @change="onSwitchChange" />
+						<view v-if="showIconFont" class="uni-list-item__icon"><text :class="['iconfont', icon]"></text></view>
 					</view>
 				</slot>
 			</view>
