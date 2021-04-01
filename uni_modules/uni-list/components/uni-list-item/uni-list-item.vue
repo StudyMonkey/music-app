@@ -15,6 +15,7 @@
 					<view class="uni-list-item__header">
 						<view v-if="thumb" class="uni-list-item__icon"><image :src="thumb" class="uni-list-item__icon-img" :class="['uni-list--' + thumbSize]" /></view>
 						<view v-else-if="showExtraIcon" class="uni-list-item__icon"><uni-icons :color="extraIcon.color" :size="extraIcon.size" :type="extraIcon.type" /></view>
+						<view v-else-if="leftText"><text class="mr20 mt15">{{ leftText }}</text></view>
 					</view>
 				</slot>
 				<slot name="body">
@@ -84,6 +85,10 @@ export default {
 		title: {
 			type: String,
 			default: ''
+		},
+		leftText: {
+			type: Number,
+			default: 0
 		},
 		icon: {
 			type: String,

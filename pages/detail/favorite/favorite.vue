@@ -2,10 +2,8 @@
 	<view>
 		<view class="top-wrap"></view>
 		<view class="song-wrap">
-			<view class="all-wrap">
-				
-			</view>
-			<SongList :list="list" :showImage="false" />
+			<view class="all-wrap"></view>
+			<SongList :list="list" :showImage="false" :showLeftText="true" />
 		</view>
 	</view>
 </template>
@@ -39,6 +37,10 @@
 			const data3 = await this.$fetch.get('/song/detail', {ids: arr.join(',')})
 			console.log('data3===', data3)
 			this.list = data3.songs
+			this.list.map(item => {
+				item.authorName = item.artists ? item.artists[0].name : item.ar[0].name
+				item.lmImage = item.album ? item.album.blurPicUrl : item.al.picUrl
+			})
 		},
 		methods: {
 			

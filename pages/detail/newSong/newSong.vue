@@ -20,6 +20,10 @@
 				type: options.type
 			})
 			this.list = data.data
+			this.list.map(item => {
+				item.authorName = item.artists ? item.artists[0].name : item.ar[0].name
+				item.lmImage = item.album ? item.album.blurPicUrl : item.al.picUrl
+			})
 			let title = this.barTitle(options.type)
 			uni.setNavigationBarTitle({
 				title: title + '新歌'
