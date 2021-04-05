@@ -7,7 +7,7 @@
 	},{
 		"path":"pages/tabbar/tabbar-2/tabbar-2",
 		"style": {
-			"navigationBarTitleText":"工作台"
+			"navigationBarTitleText":"歌单"
 		}
 	}, {
 		"path":"pages/tabbar/tabbar-4/tabbar-4",
@@ -84,6 +84,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/detail/play/play",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -110,7 +119,7 @@
 				"pagePath":"pages/tabbar/tabbar-2/tabbar-2",
 				"iconPath":"static/img/tabbar/guanzhu.png",
 				"selectedIconPath":"static/img/tabbar/guanzhuactive.png",
-				"text":"工作台"
+				"text":"歌单"
 			},
 			{
 				"pagePath":"pages/tabbar/tabbar-4/tabbar-4",

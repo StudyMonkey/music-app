@@ -1,7 +1,7 @@
 <template>
 	<view class="content">
 		<view class="swiper-wrap mb20">
-			<swiper class="swiper" :indicator-dots="false" autoplay="true" interval="5000" duration="1500">
+			<swiper class="swiper" :loop="true" :indicator-dots="false" autoplay="true" interval="5000" duration="1500">
 				<swiper-item class="banner-swiper" v-for="(item , index) in banners" :key="index">
 					<image :src="item.pic" mode="cover"></image>
 				</swiper-item>

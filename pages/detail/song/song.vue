@@ -1,16 +1,15 @@
 <template>
 	<view>
-		<uni-list>
-			<template v-if="list.length">
-				<uni-list-item clickable @click="handleSongDetail(item)" :thumb="item.img1v1Url" v-for="(item,index) in list" :key="item.accountId" :title="item.name"></uni-list-item>
-			</template>
-			<template v-else>暂无歌曲</template>
-		</uni-list>
+		<SongList :list="list" :showImage="false" :showLeftText="true" />
 	</view>
 </template>
 
 <script>
+	import SongList from '../../../components/SongList.vue'
 	export default {
+		components: {
+			SongList
+		},
 		data() {
 			return {
 				option: {},
@@ -34,7 +33,6 @@
 			uni.setNavigationBarTitle({
 				title: option.name + '-歌曲列表'
 			})
-			console.log('option===', option)
 			this._requestAwait(option.id)
 		}
 	}

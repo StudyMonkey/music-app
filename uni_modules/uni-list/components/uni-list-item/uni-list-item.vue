@@ -7,6 +7,7 @@
 			:class="{ 'uni-list-item--disabled': disabled }"
 			:hover-class="(!clickable && !link) || disabled || showSwitch ? '' : 'uni-list-item--hover'"
 			class="uni-list-item"
+			:style="{backgroundColor: bgColor}"
 			@click.stop="onClick"
 		>
 			<view v-if="!isFirstChild" class="border--left" :class="{ 'uni-list--border': border }"></view>
@@ -20,7 +21,7 @@
 				</slot>
 				<slot name="body">
 					<view class="uni-list-item__content" :class="{ 'uni-list-item__content--center': thumb || showExtraIcon || showBadge || showSwitch }">
-						<text v-if="title" class="uni-list-item__content-title" :class="[ellipsis !== 0 && ellipsis <= 2 ? 'uni-ellipsis-' + ellipsis : '']">{{ title }}</text>
+						<text v-if="title" :style="{color: titleColor}" class="uni-list-item__content-title" :class="[ellipsis !== 0 && ellipsis <= 2 ? 'uni-ellipsis-' + ellipsis : '']">{{ title }}</text>
 						<text v-if="note" class="uni-list-item__content-note">{{ note }}</text>
 					</view>
 				</slot>
@@ -78,6 +79,14 @@
 export default {
 	name: 'UniListItem',
 	props: {
+		bgColor: {
+			type: String,
+			default: '#ffffff'
+		},
+		titleColor: {
+			type: String,
+			default: '#3b4144'
+		},
 		direction: {
 			type: String,
 			default: 'row'
@@ -263,7 +272,7 @@ $list-item-pd: $uni-spacing-col-lg $uni-spacing-row-lg;
 	position: relative;
 	justify-content: space-between;
 	align-items: center;
-	background-color: #fff;
+	// background-color: #fff;
 	flex-direction: row;
 	/* #ifdef H5 */
 	cursor: pointer;
@@ -345,7 +354,7 @@ $list-item-pd: $uni-spacing-col-lg $uni-spacing-row-lg;
 
 .uni-list-item__content-title {
 	font-size: $uni-font-size-base;
-	color: #3b4144;
+	// color: #3b4144;
 	overflow: hidden;
 }
 

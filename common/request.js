@@ -5,9 +5,9 @@ function fetch (method, url, data = {}, loading = false){
       // if (loading) utils.showLoading()
       
       //获取token
-      // let token = wx.getStorageSync("token")
+      let token = uni.getStorageSync('token')
       
-      let obj = {  } // 如果有token的话
+      let obj = { token } // 如果有token的话
       
       //添加token
       Object.assign(data,obj)

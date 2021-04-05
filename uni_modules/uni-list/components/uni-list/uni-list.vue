@@ -1,6 +1,6 @@
 <template>
 	<!-- #ifndef APP-NVUE -->
-	<view class="uni-list uni-border-top-bottom">
+	<view :style="{backgroundColor: bgColor}" class="uni-list uni-border-top-bottom">
 		<view v-if="border" class="uni-list--border-top"></view>
 		<slot />
 		<view v-if="border" class="uni-list--border-bottom"></view>
@@ -26,6 +26,10 @@ export default {
 		}
 	},
 	props: {
+		bgColor: {
+			type: String,
+			default: '#ffffff'
+		},
 		enableBackToTop: {
 			type: [Boolean, String],
 			default: false
@@ -59,7 +63,6 @@ export default {
 	/* #ifndef APP-NVUE */
 	display: flex;
 	/* #endif */
-	background-color: $uni-bg-color;
 	position: relative;
 	flex-direction: column;
 }
